@@ -1,5 +1,5 @@
 # Artifex
-![video](https://github.com/Brimey/Artifex/blob/main/images/video.png)
+
 
 Tool for finding the longest video (URL included) for a YouTube channel(s).
 
