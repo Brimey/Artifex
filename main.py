@@ -35,6 +35,7 @@ def find_longest_vid(videos: dict) -> str:
 
 def main():
     target_channels = input('Enter a channel name(s): ').split()
+    print('Retrieving video(s)...')
     channel_data = {name: scrape_videos(get_id(visit_url(name))) for name in target_channels}
 
     for channel, vid_stats in channel_data.items():
