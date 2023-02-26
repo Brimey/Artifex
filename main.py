@@ -1,4 +1,5 @@
 import scrapetube as scraper
+import streamlit
 import requests
 from bs4 import BeautifulSoup
 
@@ -34,14 +35,16 @@ def find_longest_vid(videos: dict) -> str:
 
 
 def main():
-    target_channels = input('Enter a channel name(s): ').split()
-    print('Retrieving video(s)...')
+    streamlit.title('Artifex')
+    streamlit.image('artifex_image.png')
+    target_channels = streamlit.text_input('Enter a channel name(s): ',
+                                           help='Please give Artifex some time to retrieve the longest video. '
+                                                'Channels with more videos take a bit longer to parse '
+                                                'through.').split()
     channel_data = {name: scrape_videos(get_id(visit_url(name))) for name in target_channels}
-
     for channel, vid_stats in channel_data.items():
         longest_vid = find_longest_vid(vid_stats)
-        print(f'The longest video for "{channel}" is "{longest_vid}": {vid_stats[longest_vid]["url"]}')
+        streamlit.write(f'The longest video for "{channel}" is "{longest_vid}": {vid_stats[longest_vid]["url"]}.')
 
 
 main()
-input()
